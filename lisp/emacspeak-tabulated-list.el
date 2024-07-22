@@ -101,7 +101,7 @@
           tabulated-list-format
           :test #'string= :key #'car)))
     (forward-line 1)
-    (tabulated-list-next-column  col)
+    (tabulated-list-next-column  (- col (if (get-text-property (point) 'tabulated-list-column-name) 1 0)))
     (when-let ((goal (next-single-property-change (point)
                                                   'tabulated-list-column-name)))
       (goto-char goal))
@@ -116,7 +116,7 @@
           tabulated-list-format
           :test #'string= :key #'car)))
     (forward-line -1)
-    (tabulated-list-next-column  col)
+    (tabulated-list-next-column  (- col (if (get-text-property (point) 'tabulated-list-column-name) 1 0)))
     (when-let ((goal (next-single-property-change
                       (point) 'tabulated-list-column-name)))
       (goto-char goal))
